@@ -8,6 +8,7 @@ CMS を搭載したブログサイト
 
 - macOS
 - PHP
+- HTML
 
 ## Usage
 
