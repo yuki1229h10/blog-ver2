@@ -24,10 +24,17 @@
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 ``
+-- テーブルの構造 `users`
 --
 
-
+CREATE TABLE `users` (
+`id` int not NULL AUTO_INCREMENT,
+`admin` TINYINT(4),
+`username` VARCHAR(255),
+`email` VARCHAR(255),
+`password` VARCHAR(255),
+`created_at` TIMESTAMP CURRENT_TIMESTAMP,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
 
