@@ -119,7 +119,51 @@ class loginSystem
     }
     return false;
   }
+
+
+  private function checkLoginFormatDataNotEmpty()
+  {
+    if (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
+      return true;
+    } elseif (empty($_POST['user_name'])) {
+      $this->feedback = "Username field was empty.";
+    } elseif (empty($_POST['user_password'])) {
+      $this->feedback = "Password field was empty.";
+    }
+    return false;
+  }
+
+
+  private function checkPasswordCorrectnessAndLogin()
+  {
+    $sql = 'SELECT user_name, user_email,  user_password_hash
+    FROM users
+    WHERE username = :user_name OR
+    user_email = :user_name
+    LIMIT 1';
+
+    $query = $this->db_connection->prepare($sql);
+    $query->bindValue(':user_name', $_POST['user_name']);
+    $query->execute();
+
+    $result_row = $query->fetchObject();
+    if ($result_row) {
+      if (password_verify($_POST['user_password'], $result_row->user_password_hash)) {
+        $_SESSION['user_name'] = $result_row->user_name;
+        $_SESSION['user_email'] = $result_row->user_email;
+        $_SESSION['user_is_logged_in'] = true;
+        $this->user_is_logged_in = true;
+        return true;
+      } else {
+        $this->feedback = "Wrong password.";
+      }
+    } else {
+      $this->feedback = "This user does not exist.";
+    }
+    return false;
+  }
 }
+
 
 
 
