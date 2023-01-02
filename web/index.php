@@ -185,6 +185,28 @@ class loginSystem
       && ($_POST['user_password_new'] === $_POST['user_password_repeat'])
     ) {
       return true;
+    } elseif (empty($_POST['user_name'])) {
+      $this->feedback = "Empty Username";
+    } elseif (empty($_POST['user_password_new']) || empty($_POST['user_password_repeat'])) {
+      $this->feedback = "Empty Password";
+    } elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
+      $this->feedback = "Password and password repeat are not the same.";
+    } elseif (strlen($_POST['user_password_new']) < 6) {
+      $this->feedback = "Password has a minimum length of 6 characters.";
+    } elseif (strlen($_POST['user_name']) > 64 || strlen($_POST['user_name']) < 2) {
+      $this->feedback = "Username cannot be shorter than 2 or longer than 64 characters.";
+    } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])) {
+      $this->feedback = "Username does not fit the same scheme: only a-Z and numbers are allowed, 2 to 64 characters.";
+    }elseif(empty($_POST['user_email'])){
+      $this->feedback = "Email cannot be empty";
+    }elseif(strlen($_POST['user_email']) > 64){
+      $this->feedback = "Email cannot be longer than 64 characters.";
+    }elseif(!filter_var($_POST['user_email']) > FILTER_VALIDATE_EMAIL){
+      $this->feedback = "Email cannot be longer than 64 characters.";
+    }elseif
+    }
+    }
+    }
     }
   }
 }
