@@ -218,6 +218,19 @@ class loginSystem
     $user_name = htmlentities($_POST['user_name'], ENT_QUOTES);
     $user_email = htmlentities($_POST['user_email'], ENT_QUOTES);
     $user_password = $_POST['user_password_new'];
+
+    $user_password_hash = password_hash($user_password, PASSWORD_DEFAULT);
+
+    $sql = 'SELECT * FROM users WHERE user_name = :user_name OR user_email = :user_email';
+    $query = $this->db_connection->prepare($sql);
+    $query->bindValue(':user_name', $user_name);
+    $query->bindValue(':user_email', $user_email);
+    $query->execute();
+
+    $result_row = $query->fetchObject();
+    if($result_row){
+      $this->feedback = "Sorry, that username / email is already taken. Please choose another one."
+    }
   }
 }
 
