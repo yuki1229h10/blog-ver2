@@ -4,6 +4,11 @@
 
 CMS を搭載したブログサイト
 
+## Objective
+
+オブジェクト指向プログラミングを理解する
+認証システムのセキュリティ周りを理解する
+
 ## Requirement
 
 - macOS
@@ -19,6 +24,7 @@ CMS を搭載したブログサイト
 ## Reference
 
 [php-login-one-file](https://github.com/panique/php-login-one-file)
+オブジェクト指向と認証セキュリティについて学ぶため
 
 ## Author
 
