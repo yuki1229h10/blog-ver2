@@ -18,7 +18,7 @@ CMS を搭載したブログサイト
 
 ## Reference
 
-[github](https://github.com/panique/php-login-one-file)
+[php-login-one-file](https://github.com/panique/php-login-one-file)
 
 ## Author
 

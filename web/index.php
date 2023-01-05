@@ -228,9 +228,41 @@ class loginSystem
     $query->execute();
 
     $result_row = $query->fetchObject();
-    if($result_row){
-      $this->feedback = "Sorry, that username / email is already taken. Please choose another one."
+    if ($result_row) {
+      $this->feedback = "Sorry, that username / email is already taken. Please choose another one.";
+    } else {
+      $sql = 'INSERT INTO users (user_name, user_password_hash, user_email)
+      VALUES (:user_name, :user_password_hash, :user_email)';
+      $query = $this->db_connection->prepare($sql);
+      $query->bindValue(':user_name', $user_name);
+      $query->bindValue(':user_password_hash', $user_password_hash);
+      $query->bindValue(':user_email', $user_email);
+      $registration_success_state = $query->execute();
+
+      if ($registration_success_state) {
+        $this->feedback = "Your account has been created successfully. You can now log in.";
+        return true;
+      } else {
+        $this->feedback = "Sorry, your registration failed. Please go back and try again.";
+      }
     }
+    return false;
+  }
+
+
+  public function getUserLoginStatus()
+  {
+    return $this->user_is_logged_in;
+  }
+
+  private function showPageLoggedIn()
+  {
+    if ($this->feedback) {
+      echo $this->feedback . "<br/><br/>";
+    }
+
+    echo 'Hello ' . $_SESSION['user_name'] . ', you are logged in.<br/><br/>';
+    echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=logout">Log out</a>';
   }
 }
 
