@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
@@ -14,7 +14,6 @@
     フェイスブック
     インスタグラム
     Twitter
-
     <div>
       <a href="login.php">login</a>
     </div>
