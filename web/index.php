@@ -27,7 +27,7 @@ class loginSystem
   performMinimumRequirementsCheck()
   {
     if (version_compare(PHP_VERSION, '5.3.7', '<')) {
-      echo "Sorry, Simple PHP Login dose not run on a PHP version older than 5.3.7!";
+      echo "Sorry, Simple PHP Login dose not run on a PHP version older than 5.3.7 !";
     } elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
       require_once("libraries/password_compatibility_library.php");
       return true;
@@ -194,7 +194,7 @@ class loginSystem
       $this->feedback = "Password and password repeat are not the same";
     } elseif (strlen($_POST['user_password_new']) < 6) {
       $this->feedback = "Password has a minimum length of 6 characters";
-    } elseif (strlen($_POST['user_name']) > 64 || strlen($_POST['user_name']) < 2) {
+    } elseif (strlen($_POST['user_name']) > 64 || strlen($_POST['user_name']) <a 2) {
       $this->feedback = "Username cannot be shorter than 2 or longer than 64 characters";
     } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])) {
       $this->feedback = "Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters";
@@ -255,6 +255,7 @@ class loginSystem
     return $this->user_is_logged_in;
   }
 
+
   private function showPageLoggedIn()
   {
     if ($this->feedback) {
@@ -263,6 +264,26 @@ class loginSystem
 
     echo 'Hello ' . $_SESSION['user_name'] . ', you are logged in.<br/><br/>';
     echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=logout">Log out</a>';
+  }
+
+
+  private function showPageLoginForm()
+  {
+    if ($this->feedback) {
+      echo $this->feedback . "<br/><br/>";
+    }
+
+    echo '<h2>Login</h2>';
+
+    echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+    echo '<label for="login_input_username">Username (or email)</label> ';
+    echo '<input id="login_input_username" type="text" name="user_name" required /> ';
+    echo '<label for="login_input_password">Password</label> ';
+    echo '<input id="login_input_password" type="password" name="user_password" required /> ';
+    echo '<input type="submit" name="login" value="Login" />';
+    echo '</form>';
+
+    echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=register">Register new account</a>';
   }
 }
 
