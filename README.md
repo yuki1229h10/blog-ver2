@@ -22,7 +22,8 @@ CMS を搭載したブログサイト
 
 ## Reference
 
-[php-login-one-file](https://github.com/panique/php-login-one-file)
+[first method](https://github.com/panique/php-login-one-file)
+[second method](https://www.youtube.com/watch?v=BaEm2Qv14oU)
 
 ## Author
 
