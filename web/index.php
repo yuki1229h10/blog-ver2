@@ -287,6 +287,18 @@ class loginSystem
   }
 }
 
+
+if(isset($_POST["submit"])){
+  $uid = $_POST["uid"];
+  $pwd = $_POST["pwd"];
+  $pwdRepeat = $_POST["pwdRepeat"];
+  $email = $_POST["email"];
+
+  include "../signup.php";
+  include "../signup.php";
+  $signup = new SignupController();
+}
+
 // <?php
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');

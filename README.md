@@ -20,10 +20,6 @@ CMS を搭載したブログサイト
 
 ## Features
 
-## Reference
-
-[php-login-one-file](https://github.com/panique/php-login-one-file)
-
 ## Author
 
 [twitter](https://twitter.com)
