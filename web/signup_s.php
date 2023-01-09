@@ -11,5 +11,13 @@ class Signup
       header("location: ../index.php?error=stmtFailed");
       exit();
     }
+
+    $resultCheck;
+    if ($stmt->rowCount() > 0) {
+      $resultCheck = false;
+    } else {
+      $resultCheck = true;
+    }
+    return $resultCheck;
   }
 }
