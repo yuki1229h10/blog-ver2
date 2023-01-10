@@ -15,6 +15,31 @@ class SignUpController
     $this->$email = $email;
   }
 
+  private function signupUser()
+  {
+    if ($this->emptyInput() == false) {
+      header("location: ");
+      exit();
+    }
+    if ($this->invalidUid() == false) {
+      header("location: ");
+      exit();
+    }
+    if ($this->invalidEmail() == false) {
+      header("location: ");
+      exit();
+    }
+    if ($this->pwdMatch() == false) {
+      header("location: ");
+      exit();
+    }
+    if ($this->uidTakenCheck() == false) {
+      header("location: ");
+      exit();
+    }
+    $this->setUser();
+  }
+
   private function emptyInput()
   {
     $result;
@@ -57,6 +82,17 @@ class SignUpController
   {
     $result;
     if ($this->pwd !== $this->pwdRepeat) {
+      $result = false;
+    } else {
+      $result = true;
+    }
+    return $result;
+  }
+
+  private function pwdMatch()
+  {
+    $result;
+    if ($this->checkUser($this->$uid, $this->$email)) {
       $result = false;
     } else {
       $result = true;
